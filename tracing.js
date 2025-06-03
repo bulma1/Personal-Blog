@@ -1,8 +1,8 @@
 // tracing.js
 const { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');
-const { SimpleSpanProcessor } = require('@opentelemetry/sdk-trace-base');
-const { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-http');
-const opentelemetry = require('@opentelemetry/resources');
+const { SimpleSpanProcessor, ConsoleSpanExporter } = require('@opentelemetry/sdk-trace-base');
+const { JaegerExporter } = require('@opentelemetry/exporter-jaeger');
+const { Resource } = require('@opentelemetry/resources');
 const { SemanticResourceAttributes } = require('@opentelemetry/semantic-conventions');
 const { registerInstrumentations } = require('@opentelemetry/instrumentation');
 const { ExpressInstrumentation } = require('@opentelemetry/instrumentation-express');
@@ -26,21 +26,30 @@ const logger = winston.createLogger({
 
 // Configure tracing
 const provider = new NodeTracerProvider({
-  resource: new opentelemetry.Resource({
+  resource: new Resource({
     [SemanticResourceAttributes.SERVICE_NAME]: 'personal-blog',
+    [SemanticResourceAttributes.SERVICE_VERSION]: '1.0.0',
+    'environment': process.env.NODE_ENV || 'development'
   }),
 });
 
-// Use OTLP exporter for Coroot
-const exporter = new OTLPTraceExporter({
-  url: 'http://localhost:4318/v1/traces' // Default OTLP HTTP endpoint
+// Configure Jaeger exporter
+const jaegerExporter = new JaegerExporter({
+  serviceName: 'personal-blog',
+  endpoint: 'http://localhost:14268/api/traces',
 });
 
-provider.addSpanProcessor(new SimpleSpanProcessor(exporter));
+// For debugging, also log spans to console
+const consoleExporter = new ConsoleSpanExporter();
+
+// Add both exporters (remove console exporter in production)
+provider.addSpanProcessor(new SimpleSpanProcessor(jaegerExporter));
+provider.addSpanProcessor(new SimpleSpanProcessor(consoleExporter));
+
 provider.register();
 
 // Get the tracer
-const tracer = trace.getTracer('coroot-learning-blog');
+const tracer = trace.getTracer('personal-blog');
 
 // Register instrumentations
 registerInstrumentations({
