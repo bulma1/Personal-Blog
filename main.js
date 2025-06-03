@@ -38,7 +38,7 @@ app.use((req, res, next) => {
 
 // Category descriptions
 const categoryDescriptions = {
-  "tech": "Explore the latest in technology, programming, and digital innovation.",
+  "tech": 'Explore the latest in technology, programming, and digital innovation.',
   "health": "Tips and guides for maintaining physical and mental wellness in the tech industry.",
   "life": "Insights into lifestyle, productivity, and personal development.",
   "devops": "Learn about DevOps practices, tools, and best practices for modern software development."
