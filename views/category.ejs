@@ -5,24 +5,29 @@
   <div class="category-header">
     <h1><%= category %> Posts</h1>
     <p class="category-description"><%= getCategoryDescription(category) %></p>
+    <a href="/" class="nav-link">← Back to Home</a>
   </div>
 
   <div class="posts-grid">
-    <% posts.forEach((post)=> { %>
-      <article class="post-card">
-        <div class="post-meta">
-          <span class="post-date"><%= new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></span>
-          <span class="post-author">By <%= post.author %></span>
-        </div>
-        <h2><a href="<%= post.link %>"><%= post.title %></a></h2>
-        <p class="post-summary"><%= post.summary %></p>
-        <div class="post-tags">
-          <% post.tags.forEach(tag => { %>
-            <span class="tag">#<%= tag %></span>
-          <% }) %>
-        </div>
-      </article>
-    <% }) %>
+    <% if (posts.length === 0) { %>
+      <p class="no-posts">No posts found in this category yet.</p>
+    <% } else { %>
+      <% posts.forEach((post)=> { %>
+        <article class="post-card">
+          <div class="post-meta">
+            <span class="post-date"><%= new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></span>
+            <span class="post-author">By <%= post.author %></span>
+          </div>
+          <h2><a href="<%= post.link %>"><%= post.title %></a></h2>
+          <p class="post-summary"><%= post.summary %></p>
+          <div class="post-tags">
+            <% post.tags.forEach(tag => { %>
+              <span class="tag">#<%= tag %></span>
+            <% }) %>
+          </div>
+        </article>
+      <% }) %>
+    <% } %>
   </div>
 </main>
 

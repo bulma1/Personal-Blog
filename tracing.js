@@ -2,7 +2,7 @@
 const { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');
 const { SimpleSpanProcessor } = require('@opentelemetry/sdk-trace-base');
 const { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-http');
-const { Resource } = require('@opentelemetry/resources');
+const opentelemetry = require('@opentelemetry/resources');
 const { SemanticResourceAttributes } = require('@opentelemetry/semantic-conventions');
 const { registerInstrumentations } = require('@opentelemetry/instrumentation');
 const { ExpressInstrumentation } = require('@opentelemetry/instrumentation-express');
@@ -26,7 +26,7 @@ const logger = winston.createLogger({
 
 // Configure tracing
 const provider = new NodeTracerProvider({
-  resource: new Resource({
+  resource: new opentelemetry.Resource({
     [SemanticResourceAttributes.SERVICE_NAME]: 'coroot-learning-blog',
   }),
 });
