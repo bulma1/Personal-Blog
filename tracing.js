@@ -27,7 +27,7 @@ const logger = winston.createLogger({
 // Configure tracing
 const provider = new NodeTracerProvider({
   resource: new opentelemetry.Resource({
-    [SemanticResourceAttributes.SERVICE_NAME]: 'coroot-learning-blog',
+    [SemanticResourceAttributes.SERVICE_NAME]: 'personal-blog',
   }),
 });
 
