@@ -7,10 +7,6 @@ categories: ["Tech"]
 summary: "Exploring how open-source AI challenges proprietary models and why it matters for the future of tech."
 ---
 
-# Why Open-Source AI is the Future of Technology
-
-![Open-Source AI](https://example.com/open-source-ai.jpg)
-
 ## Introduction
 The rise of artificial intelligence has sparked debates about ethics, accessibility, and control. While big tech companies push proprietary AI models, the open-source community is fighting back with transparent, collaborative alternatives.
 

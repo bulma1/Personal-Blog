@@ -9,23 +9,32 @@
 <div class="category-section">
   <div class="category-header">
     <h2>Categories</h2>
+    <p class="category-description">Browse posts by category</p>
   </div>
   <div class="posts-grid">
-    <article class="post-card">
+    <article class="post-card category-card">
+      <div class="category-icon tech-icon">💻</div>
       <h3><a href="/category/tech">Technology</a></h3>
       <p class="post-summary">Explore the latest in technology, programming, and digital innovation.</p>
+      <a href="/category/tech" class="category-link">View Tech Posts →</a>
     </article>
-    <article class="post-card">
-      <h3><a href="/category/devops">DevOps</a></h3>
-      <p class="post-summary">Learn about DevOps practices, tools, and best practices for modern software development.</p>
-    </article>
-    <article class="post-card">
+    <article class="post-card category-card">
+      <div class="category-icon health-icon">🏥</div>
       <h3><a href="/category/health">Health</a></h3>
       <p class="post-summary">Tips and guides for maintaining physical and mental wellness in the tech industry.</p>
+      <a href="/category/health" class="category-link">View Health Posts →</a>
     </article>
-    <article class="post-card">
+    <article class="post-card category-card">
+      <div class="category-icon life-icon">🌟</div>
       <h3><a href="/category/life">Life</a></h3>
       <p class="post-summary">Insights into lifestyle, productivity, and personal development.</p>
+      <a href="/category/life" class="category-link">View Life Posts →</a>
+    </article>
+    <article class="post-card category-card">
+      <div class="category-icon devops-icon">🔄</div>
+      <h3><a href="/category/devops">DevOps</a></h3>
+      <p class="post-summary">Learn about DevOps practices, tools, and best practices for modern software development.</p>
+      <a href="/category/devops" class="category-link">View DevOps Posts →</a>
     </article>
   </div>
 </div>
@@ -33,6 +42,7 @@
 <div class="category-section">
   <div class="category-header">
     <h2>Recent Posts</h2>
+    <p class="category-description">Latest articles from all categories</p>
   </div>
   <div class="posts-grid">
     <% posts.slice(0, 6).forEach((post)=> { %>
